@@ -1,0 +1,74 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[francais]{babel}
+\usepackage{fullpage}
+
+\title{ADS Lab 02 - Aide en ligne Unix et manipulation de fichiers et répertoires}
+\date{03 mars 2021}
+\author{Gabriel Roch \and Gwendoline Dössegger}
+\newcounter{commande}[subsection]
+\newcommand{\question}[1]{\addtocounter{commande}{1}\paragraph{Question \arabic{commande}, #1\\}}
+\begin{document}
+
+\maketitle
+\section{Outil de pagination less}
+\question{Avec quelle touche se déplace-t-on au début du fichier?}
+  g ou <
+
+\question{Avec quelle touche se déplace-t-on à la fin du fichier?}
+  G ou >
+
+\question{Comment peut-on comemncer à chercher toutes les occurences du motif admin ?}
+  /admin
+
+\question{Comment se déplace-t-on à l'occurence suivante ?}
+  n
+
+\question{Quel est l'effet de taper -i avant une recherche ? Et un -i répété ? Positionnez-vous au début du fichier et chercher le motif bob}
+  Avant une recherche : on ignore la case pour une recherche d'un motif ne contenant pas de majuscule
+  Avec un -i répété   : désactive l'option
+
+
+\question{Que se passe-t-il si vous ouvrez}
+\begin{verbatim}
+  un fichier comprimé, par exemple /usr/share/doc/bash/INTRO.gz ?
+\end{verbatim}
+  Le fichier est décompressée à la volée et est affiché dans le terminal. 
+
+\begin{verbatim}
+  une archive comprimée, par exemple /usr/share/doc/apg/php.tar.gz ?
+\end{verbatim}
+  Affiche le détail du contenu de l'archive.
+
+
+\section{Naviguer dans le manuel UNIX}
+\question{Quelles sont les neufs sections du manuel Unix ?}
+\begin{enumerate}
+  \item Commande utilisateur et application
+  \item Appel système
+  \item Appel des bibliothèques
+  \item Fichiers spéciaux
+  \item Format des fichiers
+  \item Les jeux, économiseurs d'écran et gadgets, etc.
+  \item Divers et commandes non standards
+  \item Commandes d'administration système 
+  \item Sous-programme du noyau
+\end{enumerate}
+\question{Quelle section du manuel contient les commandes utilisateur telles que cat et ls ?}
+
+
+\question{Quelle section documente les formats de fichier, tels que les fichiers de configuration ?}
+\question{Quelle}
+
+
+\section{Structure des "MAN PAGES"}
+\subsection{Section synopsis}
+\subsection{Autres sections}
+\subsection{Résoudre des ambiguïtés}
+\subsection{La commande ls}
+\section{Chemins absolus et relatifs}
+\section{Manipulation de fichiers}
+\section{Globbing}
+\end{document}
