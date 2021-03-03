@@ -58,17 +58,74 @@
 \end{enumerate}
 \question{Quelle section du manuel contient les commandes utilisateur telles que cat et ls ?}
 
-
 \question{Quelle section documente les formats de fichier, tels que les fichiers de configuration ?}
-\question{Quelle}
+
+\question{Quelle section contient des commandes d'administration système, telles que shutdown ?}
 
 
 \section{Structure des "MAN PAGES"}
 \subsection{Section synopsis}
+\begin{verbatim}
+  1. mkpasswd PASSWORD SALT
+\end{verbatim}
+\begin{verbatim}
+  2. uniq [OPTION] ... [INPUT [OUTPUT]]
+\end{verbatim}
+\begin{verbatim}
+  3. gzip [ -acdfhlLnNrtvV19] [-S suffix] [name ...]
+\end{verbatim}
+\begin{verbatim}
+  4. pour chcon :
+      A. chcon [OPTION]... CONTEXT FILE...
+      B. chcon [OPTION]... [-u USER] [-r ROLE] FILE...
+      C. chcon [OPTION]... --reference=RFILE FILE...
+\end{verbatim}
+Réponses :
+A. 
+B.
+C.
+
 \subsection{Autres sections}
+\question{Qu'est-ce que vous trouvez normalement dans la section DESCRIPTION ?}
+\question{Quelle section documente normalement, en détail, ce que fait chaque option de commande ?}
+\question{Disons que vous lisez la man page pour une commande et que l'information que vous cherchez ne s'y trouve pas. Dans quelle partie trouvez-vous des références à d'autres man pages qui pourraient contenir ce que vous cherchez (jetez un oeil à la man page pour reboot, imaginant que vous cherchez une commande pour éteindre l'ordinateur) ?}
+\question{Dans quelle section trouvez-vous de l'information sur les fichiers de configuration utilisés par un programme ?}
+
+
+
 \subsection{Résoudre des ambiguïtés}
+\question{Parfois il existe plusieurs man pages (dans des sections différentes) pour le même mot-clé. Quelle option de la commande man pouvez-vous utiliser pour les afficher toutes ?}
+\question{Parfois vous ne savez pas le nom d'une commande que vous cherchez, mais vous pouvez deviner un terme qui est en relation avec la commande. Quelle option de la commande man pouvez-vous utiliser pour afficher toutes les pages qui mentionnent un terme donné ?}
+
+
 \subsection{La commande ls}
+\question{Que fait la commande ls ?}
+\question{Quelle option de ls affiche de l'information sur la taille des fichiers, leur propriétaire, leur groupe, leurs permissions, etc. ?}
+\question{Que fait l'option -R de ls ?}
+\question{Installez l'outil tree en tapant sudo apt install tree. Comparez tree avec ls -R.}
+
+
 \section{Chemins absolus et relatifs}
+\question{Donnez un chemin absolu pour ssh}
+\question{Donnez un chemin relatif pour ssh}
+\begin{verbatim}
+  A. si le répertoire courant est /usr/
+  B. si le répertoire courant est /usr/bin
+  C. si le répertoire courant est /usr/share
+  D. si le répertoire courant est /usr/local/bin
+\end{verbatim}
+Réponses : 
+A. 
+B.
+C.
+D.
+
 \section{Manipulation de fichiers}
+\question{todoooooooooo}
+
+
 \section{Globbing}
+\question{Trouver tous les logs du 1er mars 2015.}
+\question{Trouver tous les logs du composant database.}
+\question{Trouver tous les logs des applications.}
 \end{document}
