@@ -4,6 +4,10 @@
 \usepackage{lmodern}
 \usepackage[francais]{babel}
 \usepackage{fullpage}
+\usepackage{listings}
+\lstdefinestyle{ascii-tree}{
+  literate={├}{|}1 {─}{--}1 {└}{+}1 
+}
 
 \title{ADS Lab 02 - Aide en ligne Unix et manipulation de fichiers et répertoires}
 \date{03 mars 2021}
@@ -15,20 +19,22 @@
 \maketitle
 \section{Outil de pagination less}
 \question{Avec quelle touche se déplace-t-on au début du fichier?}
-  g ou <
+  Avec les touches \texttt{g} ou <\texttt{}
 
 \question{Avec quelle touche se déplace-t-on à la fin du fichier?}
-  G ou >
+  Avec les touches \texttt{G} ou \texttt{>}
 
-\question{Comment peut-on comemncer à chercher toutes les occurences du motif admin ?}
-  /admin
+\question{Comment peut-on commencer à chercher toutes les occurences du motif admin ?}
+  Une fois dans le fichier, on peut effectuer la commande \texttt{/admin} pour effectuer la recherche. 
 
 \question{Comment se déplace-t-on à l'occurence suivante ?}
-  n
+  Avec la touche \texttt{n}
 
 \question{Quel est l'effet de taper -i avant une recherche ? Et un -i répété ? Positionnez-vous au début du fichier et chercher le motif bob}
-  Avant une recherche : on ignore la case pour une recherche d'un motif ne contenant pas de majuscule
-  Avec un -i répété   : désactive l'option
+\begin{itemize}
+  \item Avec \texttt{-i} : on ignore la case pour une recherche d'un motif ne contenant pas de majuscule. On pourra donc avoir des résultats tels que \texttt{XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX}.\\
+  \item Avec un -i répété   : on désactive l'option précédente. On est donc de nouveau sensible à la casse et seul le motif \texttt{bob} sera indiqué.
+\end{itemize}
 
 
 \question{Que se passe-t-il si vous ouvrez}
@@ -40,15 +46,15 @@
 \begin{verbatim}
   une archive comprimée, par exemple /usr/share/doc/apg/php.tar.gz ?
 \end{verbatim}
-  Affiche le détail du contenu de l'archive.
+  Affiche le détail du contenu de l'archive. On peut donc consulter les fichiers présents dans l'archive ainsi que leurs informations relatives (permissions, nom, dates, ...).
 
 
 \section{Naviguer dans le manuel UNIX}
 \question{Quelles sont les neufs sections du manuel Unix ?}
 \begin{enumerate}
   \item Commande utilisateur et application
-  \item Appel système
-  \item Appel des bibliothèques
+  \item Appels systèmes
+  \item Appels des bibliothèques
   \item Fichiers spéciaux
   \item Format des fichiers
   \item Les jeux, économiseurs d'écran et gadgets, etc.
@@ -56,11 +62,14 @@
   \item Commandes d'administration système 
   \item Sous-programme du noyau
 \end{enumerate}
+
 \question{Quelle section du manuel contient les commandes utilisateur telles que cat et ls ?}
-
+Section 1, Commande utilisateur et application 
 \question{Quelle section documente les formats de fichier, tels que les fichiers de configuration ?}
-
+Section 5, Format de fichiers
 \question{Quelle section contient des commandes d'administration système, telles que shutdown ?}
+Section 8, Commande d'administration système
+
 
 
 \section{Structure des "MAN PAGES"}
@@ -68,64 +77,126 @@
 \begin{verbatim}
   1. mkpasswd PASSWORD SALT
 \end{verbatim}
+La commande \texttt{mkpasswd} nécessite deux paramètres, c'est-à-dire un password et un sel doivent être renseignés. Exemple : \texttt{mkpasswd "MonPassword" "19fsdnj23"}
+
 \begin{verbatim}
   2. uniq [OPTION] ... [INPUT [OUTPUT]]
 \end{verbatim}
+La commande \texttt{uniq} permet de lui passer des options au début de la liste des arguments. Ensuite, si nécessaire, on peut lui passer un input. Si cela est le cas, on peut aussi lui donner un output. 
+
 \begin{verbatim}
   3. gzip [ -acdfhlLnNrtvV19] [-S suffix] [name ...]
 \end{verbatim}
+La commande \texttt{gzip} permet de lui passer des options sans valeur \texttt{a,c,d,f,h,k,l,L,n,N,r,t,v,V,1,9} et/ou l'option \texttt{S} avec comme valeur le suffix ainsi que suivi optionnellement d'une liste de noms.
+
 \begin{verbatim}
   4. pour chcon :
       A. chcon [OPTION]... CONTEXT FILE...
       B. chcon [OPTION]... [-u USER] [-r ROLE] FILE...
       C. chcon [OPTION]... --reference=RFILE FILE...
 \end{verbatim}
-Réponses :
-A. 
-B.
-C.
+La commande \texttt{chcon} attent des options puis soit :\\
+\textbf{A.} un nom de context puis une liste de fichiers.\\
+\textbf{B.} on peut préciser le nom d'utiliseur ou un role avec \texttt{u ou r}, les arguments suivants ne sont qu'une liste de fichiers.\\
+\textbf{C.} on peut également préciser une fichier de référence au lieu du contexte et une liste de fichiers.
+
+
 
 \subsection{Autres sections}
 \question{Qu'est-ce que vous trouvez normalement dans la section DESCRIPTION ?}
+On y trouve une description de ce que fait la commande, la fonction ou le fichier.
+
 \question{Quelle section documente normalement, en détail, ce que fait chaque option de commande ?}
+La section \texttt{OPTIONS}.
+
 \question{Disons que vous lisez la man page pour une commande et que l'information que vous cherchez ne s'y trouve pas. Dans quelle partie trouvez-vous des références à d'autres man pages qui pourraient contenir ce que vous cherchez (jetez un oeil à la man page pour reboot, imaginant que vous cherchez une commande pour éteindre l'ordinateur) ?}
+Dans la section \texttt{SEE ALSO}.
+
 \question{Dans quelle section trouvez-vous de l'information sur les fichiers de configuration utilisés par un programme ?}
+On peut retrouver cette information dans \texttt{FILES} ou \texttt{CONFIGURATION}
+
 
 
 
 \subsection{Résoudre des ambiguïtés}
 \question{Parfois il existe plusieurs man pages (dans des sections différentes) pour le même mot-clé. Quelle option de la commande man pouvez-vous utiliser pour les afficher toutes ?}
+En utilisant l'option \texttt{-a}. Exemple : \texttt{man -a passwd}
+
 \question{Parfois vous ne savez pas le nom d'une commande que vous cherchez, mais vous pouvez deviner un terme qui est en relation avec la commande. Quelle option de la commande man pouvez-vous utiliser pour afficher toutes les pages qui mentionnent un terme donné ?}
+En utilisant l'option \texttt{-k}. Exemple : \texttt{man -k pass}
 
 
 \subsection{La commande ls}
 \question{Que fait la commande ls ?}
-\question{Quelle option de ls affiche de l'information sur la taille des fichiers, leur propriétaire, leur groupe, leurs permissions, etc. ?}
-\question{Que fait l'option -R de ls ?}
-\question{Installez l'outil tree en tapant sudo apt install tree. Comparez tree avec ls -R.}
+Liste les fichiers (du répertoire courant par défaut).
 
+\question{Quelle option de ls affiche de l'information sur la taille des fichiers, leur propriétaire, leur groupe, leurs permissions, etc. ?}
+L'option a utilisé est \texttt{-l}. 
+
+\question{Que fait l'option -R de ls ?}
+Affiche recursivement les sous-répertoires. 
+
+\question{Installez l'outil tree en tapant sudo apt install tree. Comparez tree avec ls -R.}
+Affiche les mêmes informations mais avec un formatage différent.
 
 \section{Chemins absolus et relatifs}
 \question{Donnez un chemin absolu pour ssh}
+/usr/bin/ssh
+
 \question{Donnez un chemin relatif pour ssh}
 \begin{verbatim}
-  A. si le répertoire courant est /usr/
-  B. si le répertoire courant est /usr/bin
-  C. si le répertoire courant est /usr/share
-  D. si le répertoire courant est /usr/local/bin
+  1. si le répertoire courant est /usr/
 \end{verbatim}
-Réponses : 
-A. 
-B.
-C.
-D.
+bin/ssh
+\begin{verbatim}
+  2. si le répertoire courant est /usr/bin
+\end{verbatim}
+ssh
+\begin{verbatim}
+  3. si le répertoire courant est /usr/share
+\end{verbatim}
+  ../bin/ssh
+\begin{verbatim}
+  4. si le répertoire courant est /usr/local/bin
+\end{verbatim}
+../../bin/ssh
 
 \section{Manipulation de fichiers}
-\question{todoooooooooo}
+\question{exo1\_files - Manipulation des répertoires et fichiers, commandes utilisées}
+\begin{verbatim}
+cd ex01_files/
+mv chap03 downloads/book/
+mv downloads/book/ work/
+cp play/trip{,_copy}
+rmdir downloads/
+\end{verbatim}
+
+\question{exo2\_files - arborescence des répertoires et fichiers}
+% \begin{lstlisting}[style=ascii-tree] 
+% .
+% ├── downloads
+% ├── index.html
+% ├── labs.d
+% │   ├── lab01.html
+% │   └── starter.tar.gz
+% ├── labs.html
+% └── lectures
+%     ├── index.html
+%     └── lc01.html
+% \end{lstlisting}
+
+Nous pensons que la dernière commande échoue car le répertoire \texttt{labs} a été renommé par \texttt{labs.d}.
+
 
 
 \section{Globbing}
 \question{Trouver tous les logs du 1er mars 2015.}
+\texttt{ls 2015-03-01*.log}
+
 \question{Trouver tous les logs du composant database.}
+\texttt{ls *\_database.log}
+
 \question{Trouver tous les logs des applications.}
+\texttt{ls *\_app\_*.log}
+
 \end{document}
