@@ -5,6 +5,7 @@
 \usepackage[francais]{babel}
 \usepackage{fullpage}
 \usepackage{listings}
+\usepackage{dirtree}
 \lstdefinestyle{ascii-tree}{
   literate={├}{|}1 {─}{--}1 {└}{+}1 
 }
@@ -13,31 +14,37 @@
 \date{03 mars 2021}
 \author{Gabriel Roch \and Gwendoline Dössegger}
 \newcounter{commande}[subsection]
-\newcommand{\question}[1]{\addtocounter{commande}{1}\paragraph{Question \arabic{commande}, #1\\}}
+\newcommand{\question}[1]{\addtocounter{commande}{1}\paragraph{Question \arabic{commande}}#1\;}
 \begin{document}
 
 \maketitle
 \section{Outil de pagination less}
 \question{Avec quelle touche se déplace-t-on au début du fichier?}
+
   Avec les touches \texttt{g} ou <\texttt{}
 
 \question{Avec quelle touche se déplace-t-on à la fin du fichier?}
+
   Avec les touches \texttt{G} ou \texttt{>}
 
 \question{Comment peut-on commencer à chercher toutes les occurences du motif admin ?}
+
   Une fois dans le fichier, on peut effectuer la commande \texttt{/admin} pour effectuer la recherche. 
 
 \question{Comment se déplace-t-on à l'occurence suivante ?}
+
   Avec la touche \texttt{n}
 
-\question{Quel est l'effet de taper -i avant une recherche ? Et un -i répété ? Positionnez-vous au début du fichier et chercher le motif bob}
+\question{Quel est l'effet de taper -i avant une recherche ? Et un -i répété ? Positionnez-vous au début du fichier et chercher le motif bob.}
+
 \begin{itemize}
-  \item Avec \texttt{-i} : on ignore la case pour une recherche d'un motif ne contenant pas de majuscule. On pourra donc avoir des résultats tels que \texttt{XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX}.\\
+  \item Avec \texttt{-i} : on ignore la case pour une recherche d'un motif ne contenant pas de majuscule. On pourra donc avoir des résultats tels que \texttt{bob, Bob, boB, ...}.\\
   \item Avec un -i répété   : on désactive l'option précédente. On est donc de nouveau sensible à la casse et seul le motif \texttt{bob} sera indiqué.
 \end{itemize}
 
 
-\question{Que se passe-t-il si vous ouvrez}
+\question{Que se passe-t-il si vous ouvrez :}
+
 \begin{verbatim}
   un fichier comprimé, par exemple /usr/share/doc/bash/INTRO.gz ?
 \end{verbatim}
@@ -51,6 +58,7 @@
 
 \section{Naviguer dans le manuel UNIX}
 \question{Quelles sont les neufs sections du manuel Unix ?}
+
 \begin{enumerate}
   \item Commande utilisateur et application
   \item Appels systèmes
@@ -64,10 +72,13 @@
 \end{enumerate}
 
 \question{Quelle section du manuel contient les commandes utilisateur telles que cat et ls ?}
+
 Section 1, Commande utilisateur et application 
 \question{Quelle section documente les formats de fichier, tels que les fichiers de configuration ?}
+
 Section 5, Format de fichiers
 \question{Quelle section contient des commandes d'administration système, telles que shutdown ?}
+
 Section 8, Commande d'administration système
 
 
@@ -104,15 +115,19 @@ La commande \texttt{chcon} attent des options puis soit :\\
 
 \subsection{Autres sections}
 \question{Qu'est-ce que vous trouvez normalement dans la section DESCRIPTION ?}
+
 On y trouve une description de ce que fait la commande, la fonction ou le fichier.
 
 \question{Quelle section documente normalement, en détail, ce que fait chaque option de commande ?}
+
 La section \texttt{OPTIONS}.
 
 \question{Disons que vous lisez la man page pour une commande et que l'information que vous cherchez ne s'y trouve pas. Dans quelle partie trouvez-vous des références à d'autres man pages qui pourraient contenir ce que vous cherchez (jetez un oeil à la man page pour reboot, imaginant que vous cherchez une commande pour éteindre l'ordinateur) ?}
+
 Dans la section \texttt{SEE ALSO}.
 
 \question{Dans quelle section trouvez-vous de l'information sur les fichiers de configuration utilisés par un programme ?}
+
 On peut retrouver cette information dans \texttt{FILES} ou \texttt{CONFIGURATION}
 
 
@@ -120,30 +135,38 @@ On peut retrouver cette information dans \texttt{FILES} ou \texttt{CONFIGURATION
 
 \subsection{Résoudre des ambiguïtés}
 \question{Parfois il existe plusieurs man pages (dans des sections différentes) pour le même mot-clé. Quelle option de la commande man pouvez-vous utiliser pour les afficher toutes ?}
+
 En utilisant l'option \texttt{-a}. Exemple : \texttt{man -a passwd}
 
 \question{Parfois vous ne savez pas le nom d'une commande que vous cherchez, mais vous pouvez deviner un terme qui est en relation avec la commande. Quelle option de la commande man pouvez-vous utiliser pour afficher toutes les pages qui mentionnent un terme donné ?}
+
 En utilisant l'option \texttt{-k}. Exemple : \texttt{man -k pass}
 
 
 \subsection{La commande ls}
 \question{Que fait la commande ls ?}
+
 Liste les fichiers (du répertoire courant par défaut).
 
 \question{Quelle option de ls affiche de l'information sur la taille des fichiers, leur propriétaire, leur groupe, leurs permissions, etc. ?}
+
 L'option a utilisé est \texttt{-l}. 
 
 \question{Que fait l'option -R de ls ?}
+
 Affiche recursivement les sous-répertoires. 
 
 \question{Installez l'outil tree en tapant sudo apt install tree. Comparez tree avec ls -R.}
+
 Affiche les mêmes informations mais avec un formatage différent.
 
 \section{Chemins absolus et relatifs}
-\question{Donnez un chemin absolu pour ssh}
+\question{Donnez un chemin absolu pour ssh :}
+
 /usr/bin/ssh
 
-\question{Donnez un chemin relatif pour ssh}
+\question{Donnez un chemin relatif pour ssh :}
+
 \begin{verbatim}
   1. si le répertoire courant est /usr/
 \end{verbatim}
@@ -162,7 +185,8 @@ ssh
 ../../bin/ssh
 
 \section{Manipulation de fichiers}
-\question{exo1\_files - Manipulation des répertoires et fichiers, commandes utilisées}
+\question{exo1\_files - Manipulation des répertoires et fichiers, commandes utilisées.}
+
 \begin{verbatim}
 cd ex01_files/
 mv chap03 downloads/book/
@@ -171,19 +195,19 @@ cp play/trip{,_copy}
 rmdir downloads/
 \end{verbatim}
 
-\question{exo2\_files - arborescence des répertoires et fichiers}
-% \begin{lstlisting}[style=ascii-tree] 
-% .
-% ├── downloads
-% ├── index.html
-% ├── labs.d
-% │   ├── lab01.html
-% │   └── starter.tar.gz
-% ├── labs.html
-% └── lectures
-%     ├── index.html
-%     └── lc01.html
-% \end{lstlisting}
+\question{exo2\_files - arborescence des répertoires et fichiers.}
+\dirtree{%
+.1 ..
+.2 downloads.
+.2 index.html.
+.2 labs.d.
+.3 lab01.html.
+.3 starter.tar.gz.
+.2 labs.html.
+.2 lectures.
+.3 index.html.
+.3 lc01.html.
+}
 
 Nous pensons que la dernière commande échoue car le répertoire \texttt{labs} a été renommé par \texttt{labs.d}.
 
@@ -191,12 +215,15 @@ Nous pensons que la dernière commande échoue car le répertoire \texttt{labs} 
 
 \section{Globbing}
 \question{Trouver tous les logs du 1er mars 2015.}
+
 \texttt{ls 2015-03-01*.log}
 
 \question{Trouver tous les logs du composant database.}
+
 \texttt{ls *\_database.log}
 
 \question{Trouver tous les logs des applications.}
+
 \texttt{ls *\_app\_*.log}
 
 \end{document}
